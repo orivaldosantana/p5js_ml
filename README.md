@@ -76,5 +76,61 @@ https://editor.p5js.org/orivaldo@gmail.com/present/rIVcjgi0y
 
 ### Perceptron 
 
+O perceptron foi uma das primeiras implementações bem sucedida de um neurônio artificial. 
+
+Esta seção apresenta como o perceptron pode ser implementado como solução para o problema de acertar um alvo em movimento constante no eixo _y_ em uma distância fixa no eixo _x_. 
+
+#### Arquitetura 
+
+O perceptron é formado basicamente de um conjunto de valores de entrada, um conjuto de pesos, uma soma ponderada (pesos vezes entradas) e uma função de ativação.
+
+Figura ilustrando o preceptron obtida no site: https://towardsdatascience.com 
+![Image do perceptron](https://miro.medium.com/max/1838/1*n6sJ4yZQzwKL9wnF5wnVNg.png =400x)
+
+Em código fica:
+```javascript
+function perceptron(entradas,pesos) {
+  // somatário dos pesos multiplicados pela entrada    
+  let soma = 0; 
+  for (let i=0; i<pesos.length; i++){
+    soma = soma + entradas[i]*pesos[i]; 
+  }
+  // ativação
+  return ativacao(soma); 
+}
+```
+
+A função de ativação foi personalizada para o problema do alvo em movimento acima descrito. 
+```javascript
+function ativacao(net) {
+  let resultado = net; 
+  if ( net > 0.7 ) {
+    resultado = 0.7;       
+  }
+  else if ( net < -0.7 ) {
+    resultado = -0.7;
+  }
+  return resultado;   
+}
+```
+
+A modelagem da solução tem como base encontrar a inclinação do canhão (coeficiente de inclinação da reta). Como o alvo tem um movimento restrito a uma distância fixa _x_ do canhão, então os valores máximo e mínimo da inclinação do canhão devem sempre apontar para área prevista para a movimentação do alvo. Desta restrição surge os valores 0.7 e -0.7 como limites ou saturação para a função de ativação. 
+
+O código da regra de aprenizagem também fica simples. A função de ajuste dos pesos recebe o erro, os valores de entrada e os pesos a serem corrigidos. 
+```javascript
+function ajusteDosPesos(erro,entradas,pesos){
+  for (let i=0; i<pesos.length; i++){
+    pesos[i] = pesos[i] + taxaDeAprendizagem*entradas[i]*erro;
+  }
+}
+```
+
+A regra de ajuste dos pesos calcula o novo valor de cada peso considerando o peso anterior somando com uma taxa de aprendizagem multiplicada pela respectiva entrada associada ao peso, vezes o erro. O erro, neste problema, é o valor desejado (posição y do alvo) menos o valor calculado (posição y que a bala do canhão atinge o alvo), ver o código: 
+```javascript
+// calcula o erro 
+    let erro = yAlvo - yd; 
+```
+
+
 Para visualizar a animação do alvo em movimento acesse o link: 
 https://editor.p5js.org/orivaldo@gmail.com/present/v8W7zk_Y0
