@@ -83,7 +83,8 @@ Esta seção apresenta como o perceptron pode ser implementado como solução pa
 O perceptron é construído basicamente de um conjunto de entrada, um conjuto de pesos, uma soma ponderada (pesos vezes entradas) e uma função de ativação.
 
 Figura ilustrando o preceptron obtida no site: https://towardsdatascience.com 
-![Image do perceptron](https://miro.medium.com/max/1838/1*n6sJ4yZQzwKL9wnF5wnVNg.png =400x)
+
+![Image do perceptron](https://miro.medium.com/max/1838/1*n6sJ4yZQzwKL9wnF5wnVNg.png | width=400)
 
 Em código fica:
 ```javascript
