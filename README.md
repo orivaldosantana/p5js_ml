@@ -16,7 +16,6 @@ A animação para ilustar este problema é composta de um:
 
 * Um alvo: 
 ```javascript
-// Alvo 
 function desenhaAlvo(x,y) {
   strokeWeight(1);
   fill(255,250,50);
@@ -40,3 +39,39 @@ function reta(x,w,b) {
 ``` 
 
 A regra de correção de w é composta por uma taxa de aprendizagem, o valor x próximo ao alvo, o cálculo do erro, valor de y desejado (_yAlvo_) menos o valor obtido yd (y da reta próximo ao alvo).   
+
+* Ajuste do peso
+```javascript 
+w = w + taxaDeAprendizagem*xd*(yAlvo - yd);  
+``` 
+
+Animação completa: 
+```javascript 
+  background(230);
+  // Desenha a reta 
+  strokeWeight(5);
+  line(x1, reta(x1,w,b), x2,reta(x2,w,b) ); 
+  
+  // alvo 
+  desenhaAlvo(xAlvo,yAlvo); 
+  
+  // Disparo 
+  yd = reta(xd,w,b);
+  
+  //desenha disparo
+  fill(10,10,200);
+  ellipse(xd,yd,4,4);
+  
+  xd=xd+4; 
+  // Ajuste do peso 
+  if (xd > xAlvo ) {
+    w = w + taxaDeAprendizagem*xd*(yAlvo - yd); 
+    xd = x2; 
+    console.log(yAlvo - yd);
+  }
+``` 
+
+<iframe src="https://editor.p5js.org/orivaldo@gmail.com/embed/rIVcjgi0y"></iframe>
+
+### Perceptron 
+
