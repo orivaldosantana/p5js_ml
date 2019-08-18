@@ -45,7 +45,7 @@ A regra de correção de w é composta por uma taxa de aprendizagem, o valor x p
 w = w + taxaDeAprendizagem*xd*(yAlvo - yd);  
 ``` 
 
-Animação completa: 
+Código principal da animação: 
 ```javascript 
   background(230);
   // Desenha a reta 
@@ -71,7 +71,9 @@ Animação completa:
   }
 ``` 
 
-<iframe src="https://editor.p5js.org/orivaldo@gmail.com/embed/rIVcjgi0y"></iframe>
+Para visualizar a animação acesso o link: 
+https://editor.p5js.org/orivaldo@gmail.com/present/rIVcjgi0y
 
 ### Perceptron 
+
 
