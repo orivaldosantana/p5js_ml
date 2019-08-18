@@ -71,9 +71,10 @@ Código principal da animação:
   }
 ``` 
 
-Para visualizar a animação acesso o link: 
+Para visualizar a animação acesse o link: 
 https://editor.p5js.org/orivaldo@gmail.com/present/rIVcjgi0y
 
 ### Perceptron 
 
-
+Para visualizar a animação do alvo em movimento acesse o link: 
+https://editor.p5js.org/orivaldo@gmail.com/present/v8W7zk_Y0

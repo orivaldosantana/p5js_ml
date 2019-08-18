@@ -1,17 +1,17 @@
 let yAlvo = 50; 
 let xAlvo = 350;
-let velAlvo = 2; 
+let velAlvo = 0.5; 
 let xd = 30; 
 let x1 = 0; 
 let x2 = 30; 
 let w = 0.1; 
 let b = 200; 
-let taxaDeAprendizagem = 0.0008; 
+let taxaDeAprendizagem = 0.002; 
 // Entradas 
 // posição em Y e a velocidade 
 let VX = [];
 // pesos 
-let VW = [0.01, 0.0];
+let VW = [0.0, 0.0];
 
 function reta(x,w,b) {
   return (b + x*w); 
@@ -87,7 +87,7 @@ function draw() {
     let erro = yAlvo - yd; 
     
     // ajusta os pesos 
-    if (erro < 200 && erro > -200)
+    if (erro < 250 && erro > -250)
       ajusteDosPesos(erro,VX,VW); 
     
     // Encontra a inclinação da reta com o perceptron 
@@ -97,5 +97,7 @@ function draw() {
     console.log(w); 
     console.log(VW); 
     console.log(erro); 
+    
+    
   }
 }
