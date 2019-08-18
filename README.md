@@ -80,9 +80,7 @@ O perceptron foi uma das primeiras implementações bem sucedida de um neurônio
 
 Esta seção apresenta como o perceptron pode ser implementado como solução para o problema de acertar um alvo em movimento constante no eixo _y_ em uma distância fixa no eixo _x_. 
 
-#### Arquitetura 
-
-O perceptron é formado basicamente de um conjunto de valores de entrada, um conjuto de pesos, uma soma ponderada (pesos vezes entradas) e uma função de ativação.
+O perceptron é construído basicamente de um conjunto de entrada, um conjuto de pesos, uma soma ponderada (pesos vezes entradas) e uma função de ativação.
 
 Figura ilustrando o preceptron obtida no site: https://towardsdatascience.com 
 ![Image do perceptron](https://miro.medium.com/max/1838/1*n6sJ4yZQzwKL9wnF5wnVNg.png =400x)
@@ -131,6 +129,45 @@ A regra de ajuste dos pesos calcula o novo valor de cada peso considerando o pes
     let erro = yAlvo - yd; 
 ```
 
+O código principal está abaixo. O ajuste de peso acontece quando a bala do canhão atinge o alvo (_xd > xAlvo_).
+```javascript
+  background(230);
+  // alvo 
+  desenhaAlvo(xAlvo,yAlvo); 
+  yAlvo = yAlvo + velAlvo;
+  if (yAlvo > height) 
+    yAlvo = 0; 
+  
+  // Atualiza a entrada 
+  VX[0] = yAlvo/height; // aultura normalizada  
+  VX[1] = velAlvo; 
+  
+  // Desenha a reta / canhão 
+  strokeWeight(5);
+  line(x1, reta(x1,a,b), x2,reta(x2,a,b) ); 
+  
+  // Disparo 
+  yd = reta(xd,a,b);
+  xd=xd+8; 
+  
+  //desenha disparo
+  strokeWeight(1);
+  fill(10,10,200);
+  ellipse(xd,yd,4,4);
+  
+  // Ajuste do peso 
+  if (xd > xAlvo ) {
+    // calcula o erro 
+    let erro = yAlvo - yd; 
+    // ajusta os pesos 
+    if (erro < 250 && erro > -250)
+      ajusteDosPesos(erro,VX,VW); 
+    // Encontra a inclinação da reta com o perceptron 
+    a = perceptron(VX,VW); 
+    // posiciona a bala no canhão novamente 
+    xd = x2;
+  }
+```
 
 Para visualizar a animação do alvo em movimento acesse o link: 
 https://editor.p5js.org/orivaldo@gmail.com/present/v8W7zk_Y0
